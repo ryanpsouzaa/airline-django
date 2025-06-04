@@ -1,0 +1,40 @@
+{% extends "flight/layout.html" %}
+
+{% block body %}
+{% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% endif %}
+
+<h1>{{flight}}</h1>
+<ul>
+    <li>Origin: {{flight.origin}}</li>
+    <li>Destination: {{flight.destination}}</li>
+    <li>Duration: {{flight.duration}}</li>
+</ul>
+
+<h1>Passengers</h1>
+<ul>
+    {% for passenger in passengers %}
+    <li>{{passenger}}</li>
+    {% empty %}
+    <h2>There's no Passengers in this flight</h2>
+    {% endfor %}
+</ul>
+
+<h2>Add Passenger</h2>
+<form action="{% url 'flight:add_passenger' flight.id %}" method="post">
+    {% csrf_token %}
+    <select name="passenger">
+        {% for passenger in non_passengers %}
+        <option value="{{passenger.id}}">{{passenger}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit">
+</form>
+
+
+<a href="{% url 'flight:index' %}">back to flights</a>
+
+{% endblock %}

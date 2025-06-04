@@ -1,0 +1,25 @@
+{% extends "flight/layout.html" %}
+
+{% block body %}
+<h1>{{airport}}</h1>
+
+<h2>Flights of departure</h2>
+    <ul>
+        {% for departure in list_departures%}
+        <li>{{departure}}</li>
+        {% empty %}
+        <h3>There is no flights of departure registered</h3>
+        {% endfor %}
+    </ul>
+    
+
+<h2>Flights of arrival</h2>
+    <ul>
+        {% for arrival in list_arrivals%}
+        <li>{{arrival}}</li>
+        {% empty %}
+        <h3>There is no flights of arrrival registered</h3>
+        {% endfor %}
+    </ul>
+    
+{% endblock %}

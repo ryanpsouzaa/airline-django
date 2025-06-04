@@ -6,10 +6,25 @@
     <ul>
         {% for flight in flights %}
 
-        <li>{{flight}}</li>
+        <li>
+            <a href="{% url 'flight:get_flight' flight.id %} ">{{flight}}</a>
+        </li>
 
         {% empty %}
         <h2>No flights</h2>
+        {% endfor %}
+    </ul>
+
+    <h1>Airports</h1>
+    <ul>
+        {% for airport in airports %}
+
+        <li>
+            <a href="{% url 'flight:get_airport' airport.id %}">{{airport}}</a>
+        </li>
+
+        {% empty %}
+        <h2>No airports</h2>
         {% endfor %}
     </ul>
 {% endblock %}
